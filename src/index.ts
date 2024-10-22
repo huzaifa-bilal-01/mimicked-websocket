@@ -8,6 +8,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"]
   }
 });
+const PORT = process.env.PORT
 
 let masterTabId: number | null = null;
 
@@ -126,6 +127,6 @@ io.on('connection', (socket) => {
   
 });
 
-server.listen(4000, () => {
-  console.log('WebSocket server listening on port 4000');
+server.listen(PORT, () => {
+  console.log(`WebSocket server listening on port ${PORT}`);
 });
