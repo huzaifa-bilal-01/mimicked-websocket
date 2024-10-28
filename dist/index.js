@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
         // console.log(`Master tab registered: ${data.accessToken}`);
     });
     socket.on('MOUSE_POSITION', (data) => {
-        console.log("Mouse data: ", data);
+        // console.log("Mouse data: ", data)
         socket.broadcast.emit('MOUSE_POSITION_UPDATE', {
             position: data.position,
             masterTabId: data.masterTabId,
