@@ -9,8 +9,14 @@ const io = new socket_io_1.Server(server, {
         methods: ["GET", "POST"]
     }
 });
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 let masterTabId = null;
+// Helper function to emit delayed drag events
+const emitDelayedDragEvent = (socket, eventName, data) => {
+    setTimeout(() => {
+        socket.broadcast.emit(eventName, data);
+    }, 5); // 5ms delay
+};
 io.on('connection', (socket) => {
     socket.on('REGISTER_MASTER', (data) => {
         masterTabId = data.tabId;
@@ -34,6 +40,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('CLICK_EVENT', (data) => {
+        console.log("Click event");
         socket.broadcast.emit('CLICK_EVENT_UPDATE', {
             clickData: data.clickData,
             masterTabId: data.masterTabId,
@@ -55,6 +62,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('MOUSE_DOWN', (data) => {
+        console.log("mouse down");
         socket.broadcast.emit('MOUSE_DOWN_UPDATE', {
             mouseDownData: data.mouseDownData,
             masterTabId: data.masterTabId,
@@ -62,6 +70,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('MOUSE_UP', (data) => {
+        console.log("mouse up");
         socket.broadcast.emit('MOUSE_UP_UPDATE', {
             mouseUpData: data.mouseUpData,
             masterTabId: data.masterTabId,
@@ -82,22 +91,26 @@ io.on('connection', (socket) => {
             accessToken: data.accessToken
         });
     });
+    // Modified drag events with delay
     socket.on('DRAG_MOVE', (data) => {
-        socket.broadcast.emit('DRAG_MOVE_UPDATE', {
+        console.log("drag move");
+        emitDelayedDragEvent(socket, 'DRAG_MOVE_UPDATE', {
             dragMoveData: data.dragMoveData,
             masterTabId: data.masterTabId,
             accessToken: data.accessToken
         });
     });
     socket.on('DRAG_START', (data) => {
-        socket.broadcast.emit('DRAG_START_UPDATE', {
+        console.log("drag start");
+        emitDelayedDragEvent(socket, 'DRAG_START_UPDATE', {
             dragStartData: data.dragStartData,
             masterTabId: data.masterTabId,
             accessToken: data.accessToken
         });
     });
     socket.on('DRAG_END', (data) => {
-        socket.broadcast.emit('DRAG_END_UPDATE', {
+        console.log("drag end");
+        emitDelayedDragEvent(socket, 'DRAG_END_UPDATE', {
             dragEndData: data.dragEndData,
             masterTabId: data.masterTabId,
             accessToken: data.accessToken
