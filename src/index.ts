@@ -26,6 +26,11 @@ io.on('connection', (socket) => {
     // console.log(`Master tab registered: ${data.accessToken}`);
   });
 
+  socket.on('MESSAGE', (data) => {
+    // console.log("IIIIIIIIIIIII AMMMMMMMMMMMMMMMMMMMMM HEREEEEEEEEEEEEEEEEEEEE!!!!!!")
+    // console.log(data)
+  });
+
   socket.on('MOUSE_POSITION', (data) => {
     // console.log("Mouse data: ", data)
     socket.broadcast.emit('MOUSE_POSITION_UPDATE', {
@@ -46,7 +51,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('CLICK_EVENT', (data) => {
-    console.log("Click event:" , data)
+    console.log("Click event")
     socket.broadcast.emit('CLICK_EVENT_UPDATE', {
       clickData: data.clickData,
       masterTabId: data.masterTabId,
@@ -71,7 +76,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('MOUSE_DOWN', (data) => {
-    console.log("mouse down")
     socket.broadcast.emit('MOUSE_DOWN_UPDATE', {
       mouseDownData: data.mouseDownData,
       masterTabId: data.masterTabId,
@@ -80,7 +84,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('MOUSE_UP', (data) => {
-    console.log("mouse up")
     socket.broadcast.emit('MOUSE_UP_UPDATE', {
       mouseUpData: data.mouseUpData,
       masterTabId: data.masterTabId,
@@ -105,7 +108,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('DRAG_MOVE', (data) => {
-    console.log("drag move")
+    // console.log("drag move")
     socket.broadcast.emit('DRAG_MOVE_UPDATE', {
       dragMoveData: data.dragMoveData,
       masterTabId: data.masterTabId,
@@ -114,7 +117,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('DRAG_START', (data) => {
-    console.log("drag start")
+    // console.log("drag start")
     socket.broadcast.emit('DRAG_START_UPDATE', {
       dragStartData: data.dragStartData,
       masterTabId: data.masterTabId,
@@ -123,7 +126,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('DRAG_END', (data) => {
-    console.log("drag end")
+    // console.log("drag end")
     socket.broadcast.emit('DRAG_END_UPDATE', {
       dragEndData: data.dragEndData,
       masterTabId: data.masterTabId,

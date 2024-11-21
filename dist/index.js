@@ -22,6 +22,10 @@ io.on('connection', (socket) => {
         masterTabId = data.tabId;
         // console.log(`Master tab registered: ${data.accessToken}`);
     });
+    socket.on('MESSAGE', (data) => {
+        console.log("IIIIIIIIIIIII AMMMMMMMMMMMMMMMMMMMMM HEREEEEEEEEEEEEEEEEEEEE!!!!!!");
+        console.log(data);
+    });
     socket.on('MOUSE_POSITION', (data) => {
         // console.log("Mouse data: ", data)
         socket.broadcast.emit('MOUSE_POSITION_UPDATE', {
@@ -40,7 +44,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('CLICK_EVENT', (data) => {
-        console.log("Click event:", data);
+        console.log("Click event");
         socket.broadcast.emit('CLICK_EVENT_UPDATE', {
             clickData: data.clickData,
             masterTabId: data.masterTabId,
@@ -62,7 +66,6 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('MOUSE_DOWN', (data) => {
-        console.log("mouse down");
         socket.broadcast.emit('MOUSE_DOWN_UPDATE', {
             mouseDownData: data.mouseDownData,
             masterTabId: data.masterTabId,
@@ -70,7 +73,6 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('MOUSE_UP', (data) => {
-        console.log("mouse up");
         socket.broadcast.emit('MOUSE_UP_UPDATE', {
             mouseUpData: data.mouseUpData,
             masterTabId: data.masterTabId,
