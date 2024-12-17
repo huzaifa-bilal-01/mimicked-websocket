@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
         // console.log(`Master tab registered: ${data.accessToken}`);
     });
     socket.on('MESSAGE', (data) => {
-        console.log("IIIIIIIIIIIII AMMMMMMMMMMMMMMMMMMMMM HEREEEEEEEEEEEEEEEEEEEE!!!!!!");
+        // console.log("IIIIIIIIIIIII AMMMMMMMMMMMMMMMMMMMMM HEREEEEEEEEEEEEEEEEEEEE!!!!!!")
         console.log(data);
     });
     socket.on('MOUSE_POSITION', (data) => {
@@ -94,7 +94,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('DRAG_MOVE', (data) => {
-        console.log("drag move");
+        // console.log("drag move")
         socket.broadcast.emit('DRAG_MOVE_UPDATE', {
             dragMoveData: data.dragMoveData,
             masterTabId: data.masterTabId,
@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('DRAG_START', (data) => {
-        console.log("drag start");
+        // console.log("drag start")
         socket.broadcast.emit('DRAG_START_UPDATE', {
             dragStartData: data.dragStartData,
             masterTabId: data.masterTabId,
@@ -110,7 +110,7 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('DRAG_END', (data) => {
-        console.log("drag end");
+        // console.log("drag end")
         socket.broadcast.emit('DRAG_END_UPDATE', {
             dragEndData: data.dragEndData,
             masterTabId: data.masterTabId,

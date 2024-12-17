@@ -12,22 +12,13 @@ const PORT = process.env.PORT || 5000;
 
 let masterTabId: number | null = null;
 
-// Helper function to emit delayed drag events
-// const emitDelayedDragEvent = (socket: any, eventName: string, data: any) => {
-//   setTimeout(() => {
-//     socket.broadcast.emit(eventName, data);
-//   }, 0); // 5ms delay
-// };
-
 io.on('connection', (socket) => {
 
   socket.on('REGISTER_MASTER', (data) => {
     masterTabId = data.tabId;
-    // console.log(`Master tab registered: ${data.accessToken}`);
   });
 
   socket.on('MESSAGE', (data) => {
-    // console.log("IIIIIIIIIIIII AMMMMMMMMMMMMMMMMMMMMM HEREEEEEEEEEEEEEEEEEEEE!!!!!!")
     // console.log(data)
   });
 
